@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WCC_heatmap</title>
+    <title>WCC_heatmap_SW</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet-src.js"></script>
@@ -19,9 +19,9 @@
           var mapMinZoom = 10;
           var mapMaxZoom = 16;
 
-        var baseMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        var suburbLayer = L.mapbox.tileLayer('moonbrandy.fistPractice');
-        var propLayer = L.mapbox.tileLayer('moonbrandy.WCC_prop');
+        var baseMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
+        var catchmentLayer = L.mapbox.tileLayer('moonbrandy.SW_catchment');
+        var propLayer = L.mapbox.tileLayer('moonbrandy.SW_prop');
 
         var map = L.mapbox.map('map', '', {
         legendControl: {
@@ -33,13 +33,13 @@
 
         var mini_map = new L.Control.MiniMap(L.mapbox.tileLayer('examples.map-i86nkdio')).addTo(map);
 
-        map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+        var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
         var layerControl = L.control.layers({
           'Base Map': baseMap.addTo(map)
           
         }, {
-          'Suburb': suburbLayer,
+          'Catchment': catchmentLayer,
           'Property': propLayer
         }
         ).addTo(map);
@@ -49,11 +49,11 @@
         /*suburbLayer.addTo(map);
         propLayer.addTo(map);*/
 
-        var propLayerGrid = L.mapbox.gridLayer('moonbrandy.WCC_prop').addTo(map);
+        var propLayerGrid = L.mapbox.gridLayer('moonbrandy.SW_prop').addTo(map);
           L.mapbox.gridControl(propLayerGrid).addTo(map);
 
-        var suburbLayerGrid = L.mapbox.gridLayer('moonbrandy.fistPractice').addTo(map);
-          L.mapbox.gridControl(suburbLayerGrid).addTo(map);
+        var catchmentLayerGrid = L.mapbox.gridLayer('moonbrandy.SW_catchment').addTo(map);
+          L.mapbox.gridControl(catchmentLayerGrid).addTo(map);
 
 
         /*if(map.hasLayer(propLayer)) {
@@ -87,7 +87,7 @@
 .legend label{
   font-size: 80%;
     list-style: none;
-    margin-left: 3px;
+    margin-left: 10px;
     line-height: 18px;
     #margin-bottom: 2px;
 }
@@ -103,20 +103,15 @@
 </style>
 
     <div id='legend' style='display:none;'>
-  <strong>Heatmap legend</strong>
+  <strong>Stormwater Current Yield</strong>
   <nav class='legend clearfix'>
-    <span style='background:#006737;'></span><label>more than 5000</label><br />
-    <span style='background:#2A8147;'></span><label>4000 to 5000</label><br />
-    <span style='background:#559C58;'></span><label>3000 to 4000</label><br />
-    <span style='background:#81B768;'></span><label>2000 to 3000</label><br />
-    <span style='background:#ACD279;'></span><label>1000 to 2000</label><br />
-    <span style='background:#D7ED8A;'></span><label>0 to 1000</label><br />
-    <span style='background:#CEC579;'></span><label>-1000 to 0</label><br />
-    <span style='background:#C59E68;'></span><label>-2000 to -1000</label><br />
-    <span style='background:#BD7758;'></span><label>-3000 to -2000</label><br />
-    <span style='background:#B44F47;'></span><label>-4000 to -3000</label><br />
-    <span style='background:#AB2836;'></span><label>-5000 to -4000</label><br />
-    <span style='background:#A30126;'></span><label>less than -5000</label><br />
+    <span style='background:#ee3f3f;'></span><label>less than 0</label><br />
+    <span style='background:#828279;'></span><label>NA</label><br />
+    <span style='background:#d9f0a3;'></span><label>0 to 200</label><br />
+    <span style='background:#addd8e;'></span><label>200 to 400</label><br />
+    <span style='background:#78c679;'></span><label>400 to 600</label><br />
+    <span style='background:#31a354;'></span><label>600 to 800</label><br />
+    <span style='background:#006837;'></span><label>more than 800</label><br />
     <small>Source: <a href="Harmonic">Harmonic</a></small>
 </div>
 
@@ -124,3 +119,4 @@
   </body>
 </html>
         
+

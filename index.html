@@ -39,8 +39,8 @@
           'Base Map': baseMap.addTo(map)
           
         }, {
-          'Catchment': catchmentLayer,
-          'Property': propLayer
+          'Catchment': catchmentLayer.addTo(map),
+          'Property': propLayer.addTo(map)
         }
         ).addTo(map);
 

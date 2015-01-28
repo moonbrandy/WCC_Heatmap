@@ -9,19 +9,19 @@
           ['Asset Type',           'Room', 'Cost',  'Remaining Life'],
           ['ARLT200',              null,    0               ,0],
           ['Bathroom',            'ARLT200'  , 0            ,0 ],
-          ['Bedroom',             'ARLT200', 0            ,0 ],
+          ['Bedroom',             'ARLT200', 0            ,5 ],
           ['Bedroom 1',             'ARLT200', 0            ,0 ],
           ['Bedroom 2',             'ARLT200', 0            ,0 ],
           ['Bedroom 3',             'ARLT200', 0            ,0 ],
           ['HWC',             'ARLT200', 0            ,0 ],
-          ['Hall 2',             'ARLT200', 0            ,0 ],
-          ['Kitchen',             'ARLT200', 0            ,0 ],
+          ['Hall 2',             'ARLT200', 0            ,8 ],
+          ['Kitchen',             'ARLT200', 0            ,8 ],
           ['Landing',             'ARLT200', 0            ,0 ],
-          ['Laundry',             'ARLT200', 0            ,0 ],
-          ['Lounge',             'ARLT200', 0            ,0 ],
+          ['Laundry',             'ARLT200', 0            ,1 ],
+          ['Lounge',             'ARLT200', 0            ,8 ],
           ['Stairs',             'ARLT200', 0            ,0 ],
-          ['Kitchen Cupboard',           'ARLT200', 0            ,0 ],
-          ['HWC Cupboard',           'ARLT200', 0            ,0 ],
+          ['Kitchen Cupboard',           'ARLT200', 0            ,8 ],
+          ['HWC Cupboard',           'ARLT200', 0            ,8 ],
           ['Wardrobe',           'ARLT200', 0            ,0 ],
 ['Ceiling Finishes-Bedroom','Bedroom',576,8],
 ['Ceiling Finishes-Hall 2','Hall 2',144,8],
@@ -88,7 +88,7 @@
            '</b>, '  + '</span><br>' +
      data.getColumnLabel(2) +
            ' (total value): ' + size + '<br>' +
-     data.getColumnLabel(3) + ': ' + data.getValue(row, 3)  + ' </div>';
+     data.getColumnLabel(3) + '(minimum value): ' + data.getValue(row, 3)  + ' </div>';
   }
 
       }

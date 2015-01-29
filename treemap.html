@@ -269,8 +269,8 @@
     return '<div style="background:#fd9; padding:10px; border-style:solid">' +
            '<strong>' + data.getValue(row, 0) +
           '</strong><br>' +
-     data.getColumnLabel(2) + '(total value): $' + size + '<br>' +
-     data.getColumnLabel(3) + '(minimum value): ' + data.getValue(row, 3) + 'years <br>' +
+     data.getColumnLabel(2) + '(total): $' + size + '<br>' +
+     data.getColumnLabel(3) + '(average): ' + Math.round(data.getValue(row, 3)) + 'years <br>' +
      /*average.getColumnLabel(0) + '(average value): ' + average.getValue(row, 0) + 'years' +*/
       '</div>';
   }

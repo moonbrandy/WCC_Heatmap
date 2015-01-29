@@ -8,54 +8,56 @@
         var data = google.visualization.arrayToDataTable([
           ['Asset Type',           'Room', 'Cost',  'Remaining Life'],
           ['DANQ018',              null,    0               ,0],
-['Bedroom','DANQ018',7124,5],
-['HWC Cupboard','DANQ018',3838,8],
-['Hall 2','DANQ018',2909,8],
-['Kitchen','DANQ018',7950,8],
-['Kitchen Cupboard','DANQ018',707,8],
-['Laundry','DANQ018',7577.6,1],
-['Lounge','DANQ018',14933.8,8],
+['Bedroom','DANQ018',7124,10.9],
+['HWC Cupboard','DANQ018',3838,17.875],
+['Hall 2','DANQ018',2909,12.2333333333333],
+['Kitchen','DANQ018',7950,12],
+['Kitchen Cupboard','DANQ018',707,11],
+['Laundry','DANQ018',7577.6,12.7142857142857],
+['Lounge','DANQ018',14933.8,11.2888888888889],
+
 
 ['Ceiling Finishes-Bedroom','Bedroom',576,8],
 ['Ceiling Finishes-Hall 2','Hall 2',144,8],
 ['Ceiling Finishes-Kitchen','Kitchen',240,8],
 ['Ceiling Finishes-Laundry','Laundry',217.6,1],
 ['Ceiling Finishes-Lounge','Lounge',768,8],
-['Electrical-Bedroom','Bedroom',802,12],
+['Electrical-Bedroom','Bedroom',802,16],
 ['Electrical-HWC Cupboard','HWC Cupboard',295,24],
-['Electrical-Hall 2','Hall 2',507,12],
-['Electrical-Kitchen','Kitchen',1097,12],
-['Electrical-Laundry','Laundry',802,12],
-['Electrical-Lounge','Lounge',2983,12],
+['Electrical-Hall 2','Hall 2',507,16],
+['Electrical-Kitchen','Kitchen',1097,16],
+['Electrical-Laundry','Laundry',802,16],
+['Electrical-Lounge','Lounge',2983,17.2],
 ['Fire Services-Lounge','Lounge',1620,8],
 ['Fixtures & Fittings-Bedroom','Bedroom',320,10],
-['Fixtures & Fittings-HWC Cupboard','HWC Cupboard',2469,13],
+['Fixtures & Fittings-HWC Cupboard','HWC Cupboard',2469,20.5],
 ['Fixtures & Fittings-Kitchen','Kitchen',3212,12],
-['Fixtures & Fittings-Laundry','Laundry',663,16],
+['Fixtures & Fittings-Laundry','Laundry',663,18],
 ['Fixtures & Fittings-Lounge','Lounge',480,10],
 ['Floor Finishes-Bedroom','Bedroom',2184,12],
 ['Floor Finishes-Hall 2','Hall 2',546,12],
 ['Floor Finishes-Kitchen','Kitchen',300,16],
 ['Floor Finishes-Laundry','Laundry',300,16],
 ['Floor Finishes-Lounge','Lounge',2984.8,12],
-['Interior Doors-Bedroom','Bedroom',992,8],
-['Interior Doors-HWC Cupboard','HWC Cupboard',707,8],
-['Interior Doors-Hall 2','Hall 2',992,8],
-['Interior Doors-Kitchen','Kitchen',992,8],
-['Interior Doors-Kitchen Cupboard','Kitchen Cupboard',707,8],
-['Interior Doors-Laundry','Laundry',551,8],
-['Interior Doors-Lounge','Lounge',992,8],
+['Interior Doors-Bedroom','Bedroom',992,14.4],
+['Interior Doors-HWC Cupboard','HWC Cupboard',707,11],
+['Interior Doors-Hall 2','Hall 2',992,14.4],
+['Interior Doors-Kitchen','Kitchen',992,11],
+['Interior Doors-Kitchen Cupboard','Kitchen Cupboard',707,11],
+['Interior Doors-Laundry','Laundry',551,11],
+['Interior Doors-Lounge','Lounge',992,14.4],
 ['Mechanical-Hall 2','Hall 2',120,15],
 ['Mechanical-Lounge','Lounge',577,13],
 ['Sanitary Plumbing-HWC Cupboard','HWC Cupboard',367,16],
-['Sanitary Plumbing-Kitchen','Kitchen',834,10],
-['Sanitary Plumbing-Laundry','Laundry',3844,10],
+['Sanitary Plumbing-Kitchen','Kitchen',834,13],
+['Sanitary Plumbing-Laundry','Laundry',3844,19],
 ['Wall Finishes-Bedroom','Bedroom',2250,5],
 ['Wall Finishes-Hall 2','Hall 2',600,8],
 ['Wall Finishes-Kitchen','Kitchen',1275,8],
 ['Wall Finishes-Laundry','Laundry',1200,8],
 ['Wall Finishes-Lounge','Lounge',3375,8],
-['Windows & Doors-Lounge','Lounge',1154,8],
+['Windows & Doors-Lounge','Lounge',1154,11],
+
 
 ['Paint Finish-1','Ceiling Finishes-Laundry',25.6,1],
 ['Paint Finish-2','Wall Finishes-Laundry',75,8],
@@ -275,11 +277,28 @@
 
       }
     </script>
+    <style type="text/css">
+      /* basic positioning */
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .low { background-color: #f00; }
+.legend .high { background-color: #0d0; }
+
+
+    </style>
 
     
   </head>
   <body>
+    <ul class="legend">
+    <li><span class="low"></span> Low in remaining life</li>
+    <li><span class="high"></span> High in remaining life</li>
+    </ul>
     <div id="chart_div" style="width: 90%; height: 90%;"></div>
+    
+</nav></div>
 
   </body>
 </html>

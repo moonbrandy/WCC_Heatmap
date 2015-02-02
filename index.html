@@ -20,7 +20,7 @@
           var mapMaxZoom = 16;
 
         var baseMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
-        var catchmentLayer = L.mapbox.tileLayer('moonbrandy.SW_catchment');
+        var catchmentLayer = L.mapbox.tileLayer('moonbrandy.fistPractice');
         var propLayer = L.mapbox.tileLayer('moonbrandy.SW_prop');
 
         var map = L.mapbox.map('map', '', {
@@ -52,7 +52,7 @@
         var propLayerGrid = L.mapbox.gridLayer('moonbrandy.SW_prop').addTo(map);
           L.mapbox.gridControl(propLayerGrid).addTo(map);
 
-        var catchmentLayerGrid = L.mapbox.gridLayer('moonbrandy.SW_catchment').addTo(map);
+        var catchmentLayerGrid = L.mapbox.gridLayer('moonbrandy.fistPractice').addTo(map);
           L.mapbox.gridControl(catchmentLayerGrid).addTo(map);
 
 
@@ -105,13 +105,13 @@
     <div id='legend' style='display:none;'>
   <strong>Stormwater Current Yield (NZD)</strong>
   <nav class='legend clearfix'>
-    <span style='background:#ee3f3f;'></span><label>less than 0</label><br />
-    <span style='background:#d9f0a3;'></span><label>0 to 200</label><br />
-    <span style='background:#addd8e;'></span><label>200 to 400</label><br />
-    <span style='background:#78c679;'></span><label>400 to 600</label><br />
-    <span style='background:#31a354;'></span><label>600 to 800</label><br />
-    <span style='background:#006837;'></span><label>more than 800</label><br />
-    <span style='background:#828279;'></span><label>NA</label><br />
+    <span style='background:#6e0b0b;'></span><label> &#60; 5% (&#60; - $13)</label><br />
+    <span style='background:#ff0000;'></span><label>  5% - 25%  (- $13 to $81) </label><br />
+    <span style='background:#f94d06;'></span><label> 25% - 50%  ($81 to $136)</label><br />
+    <span style='background:#f7d007;'></span><label> 50% - 75%  ($136 to $203)</label><br />
+    <span style='background:#2af607;'></span><label> 75% - 95%  ($203 to $395)</label><br />
+    <span style='background:#053afa;'></span><label> &#62; 95%  (&#62; $395)</label><br />
+    <span > </span><label> Percentile (absolute value)</label><br />
     <small>Source: <a href="Harmonic">Harmonic</a></small>
 </div>
 

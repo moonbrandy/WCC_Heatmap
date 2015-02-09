@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WCC_heatmap_SW</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet-src.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+    <script>
+    L.mapbox.accessToken = 'pk.eyJ1IjoibW9vbmJyYW5keSIsImEiOiJudVEyS1o0In0.vmRh_HpjlPovRha6jyBETA';
+      function init() {
+         var mapBounds = new L.LatLngBounds(
+              new L.LatLng(-41.3703, 174.6063),
+              new L.LatLng(-41.1064, 174.8967));
+          var mapMinZoom = 10;
+          var mapMaxZoom = 16;
+
+        var baseMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
+        var treatmentplantsLayer = L.mapbox.tileLayer('moonbrandy.WW_treatmentplants');
+        var propLayer = L.mapbox.tileLayer('moonbrandy.WW_prop');
+
+        var map = L.mapbox.map('map', '', {
+        legendControl: {
+          position: 'bottomleft'
+        }
+        })
+        .fitBounds(mapBounds);
+
+
+        var mini_map = new L.Control.MiniMap(L.mapbox.tileLayer('examples.map-i86nkdio')).addTo(map);
+
+        var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
+        var layerControl = L.control.layers({
+          'Base Map': baseMap.addTo(map)
+          
+        }, {
+          'Treatmentplants': treatmentplantsLayer.addTo(map),
+          'Property': propLayer.addTo(map)
+        }
+        ).addTo(map);
+
+        var propLayerGrid = L.mapbox.gridLayer('moonbrandy.WW_prop').addTo(map);
+          L.mapbox.gridControl(propLayerGrid).addTo(map);
+
+        var treatmentplantsLayerGrid = L.mapbox.gridLayer('moonbrandy.WW_treatmentplants').addTo(map);
+          L.mapbox.gridControl(treatmentplantsLayerGrid).addTo(map);
+
+
+        
+
+      }
+    </script>
+    <style>
+      html, body, #map { width:100%; height:100%; margin:0; padding:0; }
+      /*#map { width: 600px; height: 600px;}*/
+    </style>
+  </head>
+  <body onload="init()">
+
+    <style>
+.legend label{
+  font-size: 80%;
+    list-style: none;
+    margin-left: 10px;
+    line-height: 18px;
+    #margin-bottom: 2px;
+}
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  }
+</style>
+
+    <div id='legend' style='display:none;'>
+  <strong>Wastewater Median Current Yield (NZD)*</strong>
+  <nav class='legend clearfix'>
+    <span > </span><label> Percentile (absolute value)</label><br />
+    <span style='background:#6e0b0b;'></span><label> &#60; 5% (&#60; - $13)</label><br />
+    <span style='background:#ff0000;'></span><label>  5% - 25%  (- $13 to $81) </label><br />
+    <span style='background:#f94d06;'></span><label> 25% - 50%  ($81 to $136)</label><br />
+    <span style='background:#f7d007;'></span><label> 50% - 75%  ($136 to $203)</label><br />
+    <span style='background:#2af607;'></span><label> 75% - 95%  ($203 to $395)</label><br />
+    <span style='background:#053afa;'></span><label> &#62; 95%  (&#62; $395)</label><br />
+    <small>*Values represent the median and individual <br />yield when viewed at the suburb and property <br />levels, respectively.<br /></small>
+    <small>Source: <a href="http://www.harmonic.co.nz">Harmonic</a></small>
+</div>
+
+    <div id="map"></div>
+  </body>
+</html>
+        

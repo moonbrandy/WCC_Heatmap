@@ -35,12 +35,14 @@
 
         var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
+        baseMap.addTo(map);
+
         var layerControl = L.control.layers({
-          'Base Map': baseMap.addTo(map)
+          'Property': propLayer.addTo(map)
           
         }, {
           'Treatmentplants': treatmentplantsLayer.addTo(map),
-          'Property': propLayer.addTo(map)
+          
         }
         ).addTo(map);
 
@@ -86,9 +88,9 @@
   <nav class='legend clearfix'>
     <span > </span><label> Percentile (absolute value)</label><br />
     <span style='background:#6e0b0b;'></span><label> &#60; 5% (&#60; - $12)</label><br />
-    <span style='background:#fc0606;'></span><label>  5% - 25%  (- $12 to $178) </label><br />
-    <span style='background:#fc8000;'></span><label> 25% - 50%  ($178 to $268)</label><br />
-    <span style='background:#ffdf02;'></span><label> 50% - 75%  ($268 to $337)</label><br />
+    <span style='background:#ff0000;'></span><label>  5% - 25%  (- $12 to $178) </label><br />
+    <span style='background:#f94d06;'></span><label> 25% - 50%  ($178 to $268)</label><br />
+    <span style='background:#f7d007;'></span><label> 50% - 75%  ($268 to $337)</label><br />
     <span style='background:#2af607;'></span><label> 75% - 95%  ($337 to $493)</label><br />
     <span style='background:#053afa;'></span><label> &#62; 95%  (&#62; $493)</label><br />
     <small>*Values represent the median and individual <br />yield when viewed at the suburb and property <br />levels, respectively.<br /></small>

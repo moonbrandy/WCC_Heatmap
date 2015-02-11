@@ -20,34 +20,27 @@
           var mapMaxZoom = 16;
 
         var baseMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
+        var treatmentplantsLayer = L.mapbox.tileLayer('moonbrandy.WW_treatmentplants');
+        var propLayer = L.mapbox.tileLayer('moonbrandy.WW_prop');
         var lateralLayer = L.mapbox.tileLayer('moonbrandy.WW_laterals');
 
-        var map = L.mapbox.map('map', '', {
-        legendControl: {
-          position: 'bottomleft'
-        }
-        })
+        var map = L.mapbox.map('map', '')
         .fitBounds(mapBounds);
 
 
         var mini_map = new L.Control.MiniMap(L.mapbox.tileLayer('examples.map-i86nkdio')).addTo(map);
 
-        var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
-
         baseMap.addTo(map);
-        
+
         lateralLayer.addTo(map);
 
         var lateralLayerGrid = L.mapbox.gridLayer('moonbrandy.WW_laterals').addTo(map);
           L.mapbox.gridControl(lateralLayerGrid).addTo(map);
-
-
-        
-
       }
     </script>
     <style>
       html, body, #map { width:100%; height:100%; margin:0; padding:0; }
+      /*#map { width: 600px; height: 600px;}*/
     </style>
   </head>
   <body onload="init()">

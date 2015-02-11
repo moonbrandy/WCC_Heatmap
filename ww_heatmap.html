@@ -22,6 +22,7 @@
         var baseMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
         var treatmentplantsLayer = L.mapbox.tileLayer('moonbrandy.WW_treatmentplants');
         var propLayer = L.mapbox.tileLayer('moonbrandy.WW_prop');
+        var lateralLayer = L.mapbox.tileLayer('moonbrandy.WW_laterals');
 
         var map = L.mapbox.map('map', '', {
         legendControl: {
@@ -38,11 +39,11 @@
         baseMap.addTo(map);
 
         var layerControl = L.control.layers({
-          'Property': propLayer.addTo(map)
+          'Property': propLayer.addTo(map),
+          'Lateral': lateralLayer
           
         }, {
-          'Treatmentplants': treatmentplantsLayer.addTo(map),
-          
+          'Treatmentplants': treatmentplantsLayer.addTo(map)
         }
         ).addTo(map);
 

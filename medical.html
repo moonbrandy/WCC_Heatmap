@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WCC Closest Distance to Medical Center</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet-src.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+    <script>
+    L.mapbox.accessToken = 'pk.eyJ1IjoibW9vbmJyYW5keSIsImEiOiJudVEyS1o0In0.vmRh_HpjlPovRha6jyBETA';
+      function init() {
+         var mapBounds = new L.LatLngBounds(
+              new L.LatLng(-41.3703, 174.6063),
+              new L.LatLng(-41.1064, 174.8967));
+          var mapMinZoom = 10;
+          var mapMaxZoom = 16;
+
+        var baseMap         = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
+        var medical         = L.mapbox.tileLayer('moonbrandy.dist_medical_prop');
+        var hospital        = L.mapbox.tileLayer('moonbrandy.dist_hospital_prop');
+        var gp              = L.mapbox.tileLayer('moonbrandy.dist_gp_prop');
+        var medical_suburb  = L.mapbox.tileLayer('moonbrandy.dist_medical_suburb');
+
+        var map = L.mapbox.map('map', '', {
+        legendControl: {
+          position: 'bottomleft'
+        }
+        })
+        .fitBounds(mapBounds);
+
+
+        var mini_map = new L.Control.MiniMap(L.mapbox.tileLayer('moonbrandy.kn40ckc3')).addTo(map);
+
+        var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
+        baseMap.addTo(map);
+
+        var layerControl = L.control.layers({
+          'To Medical Distance': medical.addTo(map),
+          'To Hospital Distance': hospital,
+          'To GP Distance': gp
+          
+        }, {
+          'To Medical Distance Suburb level': medical_suburb.addTo(map)
+        }
+        ).addTo(map);
+
+        var medicalSuburbLayerGrid = L.mapbox.gridLayer('moonbrandy.dist_medical_suburb').addTo(map);
+          L.mapbox.gridControl(medicalSuburbLayerGrid).addTo(map);
+
+        var medicalLayerGrid = L.mapbox.gridLayer('moonbrandy.dist_medical_prop').addTo(map);
+          L.mapbox.gridControl(medicalLayerGrid).addTo(map);
+
+        var hospitalLayerGrid = L.mapbox.gridLayer('moonbrandy.dist_hospital_prop').addTo(map);
+          L.mapbox.gridControl(hospitalLayerGrid).addTo(map);
+
+        var gpLayerGrid = L.mapbox.gridLayer('moonbrandy.dist_gp_prop').addTo(map);
+          L.mapbox.gridControl(gpLayerGrid).addTo(map);
+
+
+
+        
+
+      }
+    </script>
+    <style>
+      html, body, #map { width:100%; height:100%; margin:0; padding:0; }
+      /*#map { width: 600px; height: 600px;}*/
+    </style>
+  </head>
+  <body onload="init()">
+
+    <style>
+.legend label{
+  font-size: 80%;
+    list-style: none;
+    margin-left: 10px;
+    line-height: 18px;
+    #margin-bottom: 2px;
+}
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  }
+</style>
+
+    <div id='legend' style='display:none;'>
+  <strong>Distance (meter)</strong>
+  <nav class='legend clearfix'>
+    <span style='background:#6e0b0b;'></span><label> &#60; 5% </label><br />
+    <span style='background:#fc0606;'></span><label>  5% - 25%   </label><br />
+    <span style='background:#fc8000;'></span><label> 25% - 50%  </label><br />
+    <span style='background:#ffdf02;'></span><label> 50% - 75%  </label><br />
+    <span style='background:#2af607;'></span><label> 75% - 95%  </label><br />
+    <span style='background:#053afa;'></span><label> &#62; 95%  </label><br />
+    <small>Source: <a href="http://www.harmonic.co.nz">Harmonic</a></small>
+</div>
+
+    <div id="map"></div>
+  </body>
+</html>
+        

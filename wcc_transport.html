@@ -42,7 +42,7 @@
         baseMap.addTo(map);
 
         var layerControl = L.control.layers({
-          'Road Services': RS,
+          'Road Services': RS.addTo(map),
           'Kerb': Kerb,
           'Foot Print': FP,
           'Transport': trans
@@ -104,11 +104,11 @@
     <div id='legend' style='display:none;'>
   <strong>Current Yield (NZD)</strong>
   <nav class='legend clearfix'>
-    <span style='background:#053afa;'></span><label> &#60; $100  </label><br />
-    <span style='background:#2af607;'></span><label> $100  - $200  </label><br />
-    <span style='background:#ffdf02;'></span><label> $200  - $400  </label><br />
-    <span style='background:#fc8000;'></span><label> $400  - $600  </label><br />
-    <span style='background:#fc0606;'></span><label> &#62; $600  </label><br />
+    <span style='background:#053afa;'></span><label> &#60; 5%  </label><br />
+    <span style='background:#2af607;'></span><label> 5%  - 25%  </label><br />
+    <span style='background:#ffdf02;'></span><label> 25%  - 75%  </label><br />
+    <span style='background:#fc8000;'></span><label> 75%  - 95%  </label><br />
+    <span style='background:#fc0606;'></span><label> &#62; 95%  </label><br />
     
     
     

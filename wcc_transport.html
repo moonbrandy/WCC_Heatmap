@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Current Yield for Transport Assets</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet-src.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+    <script>
+    L.mapbox.accessToken = 'pk.eyJ1IjoibW9vbmJyYW5keSIsImEiOiJudVEyS1o0In0.vmRh_HpjlPovRha6jyBETA';
+      function init() {
+         var mapBounds = new L.LatLngBounds(
+              new L.LatLng(-41.3703, 174.6063),
+              new L.LatLng(-41.1064, 174.8967));
+          var mapMinZoom = 10;
+          var mapMaxZoom = 16;
+
+        var baseMap     = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
+        var RS         = L.mapbox.tileLayer('moonbrandy.transport_RS');
+        var Kerb       = L.mapbox.tileLayer('moonbrandy.transport_Kerb');
+        var FP         = L.mapbox.tileLayer('moonbrandy.transport_FP');
+        var trans      = L.mapbox.tileLayer('moonbrandy.transport_trans');
+        var suburb     = L.mapbox.tileLayer('moonbrandy.transport_suburb');
+
+
+        var map = L.mapbox.map('map', '', {
+        legendControl: {
+          position: 'bottomleft'
+        }
+        })
+        .fitBounds(mapBounds);
+
+
+        var mini_map = new L.Control.MiniMap(L.mapbox.tileLayer('moonbrandy.kn40ckc3')).addTo(map);
+
+        var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
+        baseMap.addTo(map);
+
+        var layerControl = L.control.layers({
+          'Road Services': RS,
+          'Kerb': Kerb,
+          'Foot Print': FP,
+          'Transport': trans
+          
+        }, {
+          'Current Yield for all Transport': suburb.addTo(map),
+        }
+        ).addTo(map);
+
+        var RSLayerGrid = L.mapbox.gridLayer('moonbrandy.transport_RS').addTo(map);
+          L.mapbox.gridControl(RSLayerGrid).addTo(map);
+        
+        var KerbLayerGrid = L.mapbox.gridLayer('moonbrandy.transport_Kerb').addTo(map);
+          L.mapbox.gridControl(KerbLayerGrid).addTo(map);
+          
+        var FPLayerGrid = L.mapbox.gridLayer('moonbrandy.transport_FP').addTo(map);
+          L.mapbox.gridControl(FPLayerGrid).addTo(map);
+          
+        var transLayerGrid = L.mapbox.gridLayer('moonbrandy.transport_trans').addTo(map);
+          L.mapbox.gridControl(transLayerGrid).addTo(map);
+          
+        var suburbLayerGrid = L.mapbox.gridLayer('moonbrandy.transport_suburb').addTo(map);
+          L.mapbox.gridControl(suburbLayerGrid).addTo(map);
+
+        
+
+
+
+        
+
+      }
+    </script>
+    <style>
+      html, body, #map { width:100%; height:100%; margin:0; padding:0; }
+      /*#map { width: 600px; height: 600px;}*/
+    </style>
+  </head>
+  <body onload="init()">
+
+    <style>
+.legend label{
+  font-size: 80%;
+    list-style: none;
+    margin-left: 10px;
+    line-height: 18px;
+    #margin-bottom: 2px;
+}
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  }
+</style>
+
+    <div id='legend' style='display:none;'>
+  <strong>Current Yield (NZD)</strong>
+  <nav class='legend clearfix'>
+    <span style='background:#053afa;'></span><label> &#60; $100  </label><br />
+    <span style='background:#2af607;'></span><label> $100  - $200  </label><br />
+    <span style='background:#ffdf02;'></span><label> $200  - $400  </label><br />
+    <span style='background:#fc8000;'></span><label> $400  - $600  </label><br />
+    <span style='background:#fc0606;'></span><label> &#62; $600  </label><br />
+    
+    
+    
+    
+    <small>Source: <a href="http://www.harmonic.co.nz">Harmonic</a></small>
+</div>
+
+    <div id="map"></div>
+  </body>
+</html>
+        

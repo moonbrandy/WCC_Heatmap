@@ -34,13 +34,14 @@
         var mini_map = new L.Control.MiniMap(L.mapbox.tileLayer('examples.map-i86nkdio')).addTo(map);
 
         var legend = map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+        
+        baseMap.addTo(map);
 
         var layerControl = L.control.layers({
-          'Base Map': baseMap.addTo(map)
+          'Property': propLayer.addTo(map)
           
         }, {
-          'Catchment': catchmentLayer.addTo(map),
-          'Property': propLayer.addTo(map)
+          'Catchment': catchmentLayer.addTo(map)
         }
         ).addTo(map);
 

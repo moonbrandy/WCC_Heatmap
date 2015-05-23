@@ -42,10 +42,10 @@
         baseMap.addTo(map);
 
         var layerControl = L.control.layers({
-          'Road surfaces:': RS.addTo(map),
+          'Road surfaces': RS.addTo(map),
           'Kerbs': Kerb,
-          'Footpath:': FP,
-          'All transport assets:': trans
+          'Footpath': FP,
+          'All transport assets': trans
           
         }, {
           'Current Yield for all Transport': suburb.addTo(map),
